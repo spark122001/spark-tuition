@@ -1,0 +1,177 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <style>
+        @page {
+            size: A4;
+            margin: 0;
+            background-color: #ffffff;
+        }
+        body {
+            font-family: 'Segoe UI', Arial, sans-serif;
+            color: #333;
+            margin: 0;
+            padding: 0;
+            line-height: 1.6;
+        }
+        header {
+            background-color: #1a3a5f;
+            color: white;
+            padding: 40px 20px;
+            text-align: center;
+        }
+        header h1 { margin: 0; font-size: 28pt; }
+        header p { margin: 10px 0 0; font-size: 14pt; color: #d1d9e6; }
+        
+        .container { padding: 30px; }
+        
+        .section { margin-bottom: 40px; }
+        h2 { 
+            color: #1a3a5f; 
+            border-bottom: 2px solid #f39c12; 
+            padding-bottom: 5px;
+            font-size: 18pt;
+        }
+        
+        .grid {
+            display: table;
+            width: 100%;
+            border-spacing: 15px;
+        }
+        .card {
+            display: table-cell;
+            background: #f8f9fa;
+            padding: 20px;
+            border-radius: 8px;
+            border-left: 5px solid #1a3a5f;
+            width: 50%;
+        }
+        
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 20px;
+        }
+        table th {
+            background-color: #1a3a5f;
+            color: white;
+            text-align: left;
+            padding: 12px;
+        }
+        table td {
+            padding: 12px;
+            border-bottom: 1px solid #ddd;
+        }
+        .even { background-color: #f2f2f2; }
+        
+        .contact-box {
+            background-color: #eef2f7;
+            padding: 25px;
+            border-radius: 10px;
+            margin-top: 20px;
+        }
+        .footer {
+            text-align: center;
+            font-size: 10pt;
+            color: #777;
+            padding: 20px;
+            border-top: 1px solid #eee;
+        }
+        .mode-badge {
+            display: inline-block;
+            background: #f39c12;
+            color: white;
+            padding: 5px 15px;
+            border-radius: 20px;
+            font-weight: bold;
+            font-size: 11pt;
+            margin-top: 10px;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <h1>Spark Tuition Center</h1>
+        <p>Excellence in Mathematics & Science (Classes 6th - 12th)</p>
+        <div class="mode-badge">Online & Offline Modes Available</div>
+    </header>
+
+    <div class="container">
+        <div class="section">
+            <h2>Our Faculty</h2>
+            <div class="grid">
+                <div class="card">
+                    <h3>Dr. Arun Sharma</h3>
+                    <p><strong>Lead Mathematics Instructor</strong><br>
+                    Ph.D. in Applied Mathematics. 15+ years of experience in preparing students for Board Exams and Olympiads.</p>
+                </div>
+                <div class="card">
+                    <h3>Prof. Sangeeta Verma</h3>
+                    <p><strong>Science Department Head</strong><br>
+                    M.Sc. Physics. Expert in simplifying complex Physics and Chemistry concepts for secondary students.</p>
+                </div>
+            </div>
+        </div>
+
+        <div class="section">
+            <h2>Student Achievement Dashboard</h2>
+            <table>
+                <thead>
+                    <tr>
+                        <th>Student Name</th>
+                        <th>Class</th>
+                        <th>Mathematics</th>
+                        <th>Science</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>Rahul Kumar</td>
+                        <td>10th</td>
+                        <td>98%</td>
+                        <td>95%</td>
+                    </tr>
+                    <tr class="even">
+                        <td>Sneha Gupta</td>
+                        <td>12th</td>
+                        <td>95%</td>
+                        <td>97%</td>
+                    </tr>
+                    <tr>
+                        <td>Aman Singh</td>
+                        <td>8th</td>
+                        <td>99%</td>
+                        <td>92%</td>
+                    </tr>
+                    <tr class="even">
+                        <td>Priya Das</td>
+                        <td>11th</td>
+                        <td>92%</td>
+                        <td>94%</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+
+        <div class="section">
+            <h2>Gallery Highlights</h2>
+            <p style="font-style: italic; color: #666;">Photos of modern smart-classes, science laboratory sessions, and interactive online webinars.</p>
+        </div>
+
+        <div class="section">
+            <h2>Contact Information</h2>
+            <div class="contact-box">
+                <p><strong>📍 Address:</strong> 123 Education Lane, Knowledge Hub, City Center, PIN 110001</p>
+                <p><strong>📞 Phone:</strong> +91 98765 43210</p>
+                <p><strong>✉️ Email:</strong> info@sparktuition.com</p>
+                <p><strong>🌐 Website:</strong> www.sparktuition.com</p>
+            </div>
+        </div>
+    </div>
+
+    <div class="footer">
+        © 2024 Spark Tuition Center - Shaping Bright Futures
+    </div>
+</body>
+</html>
