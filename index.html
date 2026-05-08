@@ -1,177 +1,361 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <style>
-        @page {
-            size: A4;
-            margin: 0;
-            background-color: #ffffff;
-        }
-        body {
-            font-family: 'Segoe UI', Arial, sans-serif;
-            color: #333;
-            margin: 0;
-            padding: 0;
-            line-height: 1.6;
-        }
-        header {
-            background-color: #1a3a5f;
-            color: white;
-            padding: 40px 20px;
-            text-align: center;
-        }
-        header h1 { margin: 0; font-size: 28pt; }
-        header p { margin: 10px 0 0; font-size: 14pt; color: #d1d9e6; }
-        
-        .container { padding: 30px; }
-        
-        .section { margin-bottom: 40px; }
-        h2 { 
-            color: #1a3a5f; 
-            border-bottom: 2px solid #f39c12; 
-            padding-bottom: 5px;
-            font-size: 18pt;
-        }
-        
-        .grid {
-            display: table;
-            width: 100%;
-            border-spacing: 15px;
-        }
-        .card {
-            display: table-cell;
-            background: #f8f9fa;
-            padding: 20px;
-            border-radius: 8px;
-            border-left: 5px solid #1a3a5f;
-            width: 50%;
-        }
-        
-        table {
-            width: 100%;
-            border-collapse: collapse;
-            margin-top: 20px;
-        }
-        table th {
-            background-color: #1a3a5f;
-            color: white;
-            text-align: left;
-            padding: 12px;
-        }
-        table td {
-            padding: 12px;
-            border-bottom: 1px solid #ddd;
-        }
-        .even { background-color: #f2f2f2; }
-        
-        .contact-box {
-            background-color: #eef2f7;
-            padding: 25px;
-            border-radius: 10px;
-            margin-top: 20px;
-        }
-        .footer {
-            text-align: center;
-            font-size: 10pt;
-            color: #777;
-            padding: 20px;
-            border-top: 1px solid #eee;
-        }
-        .mode-badge {
-            display: inline-block;
-            background: #f39c12;
-            color: white;
-            padding: 5px 15px;
-            border-radius: 20px;
-            font-weight: bold;
-            font-size: 11pt;
-            margin-top: 10px;
-        }
-    </style>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Spark Tuition Center – Excellence in Math & Science | Ropar</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.2/css/bootstrap.min.css" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-icons/1.11.3/font/bootstrap-icons.min.css" />
+  <link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;500;600;700;800&family=DM+Sans:ital,wght@0,300;0,400;0,500;1,300&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="css/style.css" />
 </head>
 <body>
-    <header>
-        <h1>Spark Tuition Center</h1>
-        <p>Excellence in Mathematics & Science (Classes 6th - 12th)</p>
-        <div class="mode-badge">Online & Offline Modes Available</div>
-    </header>
 
-    <div class="container">
-        <div class="section">
-            <h2>Our Faculty</h2>
-            <div class="grid">
-                <div class="card">
-                    <h3>Dr. Arun Sharma</h3>
-                    <p><strong>Lead Mathematics Instructor</strong><br>
-                    Ph.D. in Applied Mathematics. 15+ years of experience in preparing students for Board Exams and Olympiads.</p>
-                </div>
-                <div class="card">
-                    <h3>Prof. Sangeeta Verma</h3>
-                    <p><strong>Science Department Head</strong><br>
-                    M.Sc. Physics. Expert in simplifying complex Physics and Chemistry concepts for secondary students.</p>
-                </div>
+<div id="navbar-placeholder"></div>
+
+<!-- ========== HERO ========== -->
+<section class="hero-section">
+  <div class="hero-grid-bg"></div>
+  <div class="container position-relative">
+    <div class="row align-items-center g-5">
+      <div class="col-lg-6">
+        <div class="hero-float-badge">
+          <span class="dot"></span>
+          Admissions Open 2024–25
+        </div>
+        <h1 class="hero-title">
+          Where <span class="highlight">Sparks</span><br>Become<br>Brilliance
+        </h1>
+        <p class="hero-desc mt-3">
+          Expert coaching in Mathematics & Science for Class 6–12. Small batches, personalized attention, and proven results in Ropar's most trusted tuition center.
+        </p>
+        <div class="hero-stats mt-4 mb-4">
+          <div>
+            <div class="hero-stat-num">500<span>+</span></div>
+            <div class="hero-stat-label">Students</div>
+          </div>
+          <div style="width:1px;background:rgba(255,255,255,0.1);"></div>
+          <div>
+            <div class="hero-stat-num">98<span>%</span></div>
+            <div class="hero-stat-label">Pass Rate</div>
+          </div>
+          <div style="width:1px;background:rgba(255,255,255,0.1);"></div>
+          <div>
+            <div class="hero-stat-num">10<span>+</span></div>
+            <div class="hero-stat-label">Years</div>
+          </div>
+        </div>
+        <div class="hero-btns">
+          <a href="contact.html" class="btn-primary-custom">
+            <i class="bi bi-person-plus-fill"></i> Enroll Now
+          </a>
+          <a href="results.html" class="btn-outline-custom">
+            <i class="bi bi-trophy"></i> View Results
+          </a>
+        </div>
+      </div>
+      <div class="col-lg-6">
+        <div class="hero-visual">
+          <div class="hero-card hero-card-main mb-3">
+            <div class="d-flex align-items-center justify-content-between mb-3">
+              <span style="color:white;font-family:'Syne',sans-serif;font-weight:700;font-size:1rem;">📚 Subjects Offered</span>
+              <div class="class-range-badge">Class 6–12</div>
             </div>
-        </div>
-
-        <div class="section">
-            <h2>Student Achievement Dashboard</h2>
-            <table>
-                <thead>
-                    <tr>
-                        <th>Student Name</th>
-                        <th>Class</th>
-                        <th>Mathematics</th>
-                        <th>Science</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <tr>
-                        <td>Rahul Kumar</td>
-                        <td>10th</td>
-                        <td>98%</td>
-                        <td>95%</td>
-                    </tr>
-                    <tr class="even">
-                        <td>Sneha Gupta</td>
-                        <td>12th</td>
-                        <td>95%</td>
-                        <td>97%</td>
-                    </tr>
-                    <tr>
-                        <td>Aman Singh</td>
-                        <td>8th</td>
-                        <td>99%</td>
-                        <td>92%</td>
-                    </tr>
-                    <tr class="even">
-                        <td>Priya Das</td>
-                        <td>11th</td>
-                        <td>92%</td>
-                        <td>94%</td>
-                    </tr>
-                </tbody>
-            </table>
-        </div>
-
-        <div class="section">
-            <h2>Gallery Highlights</h2>
-            <p style="font-style: italic; color: #666;">Photos of modern smart-classes, science laboratory sessions, and interactive online webinars.</p>
-        </div>
-
-        <div class="section">
-            <h2>Contact Information</h2>
-            <div class="contact-box">
-                <p><strong>📍 Address:</strong> 123 Education Lane, Knowledge Hub, City Center, PIN 110001</p>
-                <p><strong>📞 Phone:</strong> +91 98765 43210</p>
-                <p><strong>✉️ Email:</strong> info@sparktuition.com</p>
-                <p><strong>🌐 Website:</strong> www.sparktuition.com</p>
+            <div>
+              <span class="subject-pill">🔢 Mathematics</span>
+              <span class="subject-pill">🔬 Physics</span>
+              <span class="subject-pill">⚗️ Chemistry</span>
+              <span class="subject-pill">🌱 Biology</span>
+              <span class="subject-pill">📐 Geometry</span>
+              <span class="subject-pill">🧪 Lab Work</span>
             </div>
+          </div>
+          <div class="row g-3">
+            <div class="col-6">
+              <div class="hero-card text-center">
+                <div style="font-size:2rem;margin-bottom:5px;">🏆</div>
+                <div style="color:white;font-family:'Syne',sans-serif;font-weight:700;font-size:1.3rem;">Top 10</div>
+                <div style="color:rgba(255,255,255,0.5);font-size:0.75rem;">Board Toppers</div>
+              </div>
+            </div>
+            <div class="col-6">
+              <div class="hero-card text-center">
+                <div style="font-size:2rem;margin-bottom:5px;">⭐</div>
+                <div style="color:white;font-family:'Syne',sans-serif;font-weight:700;font-size:1.3rem;">4.9 / 5</div>
+                <div style="color:rgba(255,255,255,0.5);font-size:0.75rem;">Parent Rating</div>
+              </div>
+            </div>
+          </div>
         </div>
+      </div>
     </div>
+  </div>
+</section>
 
-    <div class="footer">
-        © 2024 Spark Tuition Center - Shaping Bright Futures
+<!-- ========== CLASSES ========== -->
+<section class="classes-section">
+  <div class="container">
+    <div class="text-center mb-5">
+      <h2 class="section-title centered">Classes We <span>Offer</span></h2>
+      <p class="section-subtitle mx-auto mt-4">Comprehensive coaching from foundational middle school to competitive senior secondary level.</p>
     </div>
+    <div class="row g-4">
+
+      <div class="col-lg-4 col-md-6">
+        <div class="class-card">
+          <div class="class-num">06</div>
+          <div class="class-icon">📘</div>
+          <h4 style="font-size:1.1rem;margin-bottom:0.5rem;">Class 6 – 8</h4>
+          <p style="color:var(--text-light);font-size:0.88rem;line-height:1.7;">Building strong foundations in numbers, algebra, basic science concepts and lab methods for middle school students.</p>
+          <div class="mt-3 d-flex gap-2 flex-wrap">
+            <span style="background:rgba(255,107,43,0.1);color:var(--primary);padding:3px 10px;border-radius:20px;font-size:0.75rem;font-weight:500;">Maths</span>
+            <span style="background:rgba(0,201,167,0.1);color:var(--accent2);padding:3px 10px;border-radius:20px;font-size:0.75rem;font-weight:500;">Science</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="col-lg-4 col-md-6">
+        <div class="class-card">
+          <div class="class-num">09</div>
+          <div class="class-icon">📗</div>
+          <h4 style="font-size:1.1rem;margin-bottom:0.5rem;">Class 9 – 10</h4>
+          <p style="color:var(--text-light);font-size:0.88rem;line-height:1.7;">Focused CBSE/PSEB board preparation with in-depth chapters, model papers, and weekly tests for secondary students.</p>
+          <div class="mt-3 d-flex gap-2 flex-wrap">
+            <span style="background:rgba(255,107,43,0.1);color:var(--primary);padding:3px 10px;border-radius:20px;font-size:0.75rem;font-weight:500;">Maths</span>
+            <span style="background:rgba(0,201,167,0.1);color:var(--accent2);padding:3px 10px;border-radius:20px;font-size:0.75rem;font-weight:500;">Physics</span>
+            <span style="background:rgba(67,97,238,0.1);color:#4361ee;padding:3px 10px;border-radius:20px;font-size:0.75rem;font-weight:500;">Chemistry</span>
+            <span style="background:rgba(114,9,183,0.1);color:#7209b7;padding:3px 10px;border-radius:20px;font-size:0.75rem;font-weight:500;">Biology</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="col-lg-4 col-md-6">
+        <div class="class-card">
+          <div class="class-num">11</div>
+          <div class="class-icon">📙</div>
+          <h4 style="font-size:1.1rem;margin-bottom:0.5rem;">Class 11 – 12</h4>
+          <p style="color:var(--text-light);font-size:0.88rem;line-height:1.7;">Senior secondary mastery with JEE/NEET orientation, advanced problems, and board exam strategy for stream students.</p>
+          <div class="mt-3 d-flex gap-2 flex-wrap">
+            <span style="background:rgba(255,107,43,0.1);color:var(--primary);padding:3px 10px;border-radius:20px;font-size:0.75rem;font-weight:500;">Advanced Maths</span>
+            <span style="background:rgba(0,201,167,0.1);color:var(--accent2);padding:3px 10px;border-radius:20px;font-size:0.75rem;font-weight:500;">Physics</span>
+            <span style="background:rgba(67,97,238,0.1);color:#4361ee;padding:3px 10px;border-radius:20px;font-size:0.75rem;font-weight:500;">Chemistry</span>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- ========== SUBJECTS ========== -->
+<section class="subjects-section">
+  <div class="container position-relative">
+    <div class="text-center mb-5">
+      <h2 class="section-title centered" style="color:white;">What We <span>Teach</span></h2>
+      <p class="section-subtitle mx-auto mt-4" style="color:rgba(255,255,255,0.6);">Deep expertise in core subjects with structured curriculum and regular assessments.</p>
+    </div>
+    <div class="row g-4">
+      <div class="col-lg-3 col-md-6">
+        <div class="subject-card">
+          <div class="subject-icon-big">🔢</div>
+          <h4>Mathematics</h4>
+          <p class="mt-2">Algebra, Geometry, Trigonometry, Calculus, Statistics & Probability</p>
+        </div>
+      </div>
+      <div class="col-lg-3 col-md-6">
+        <div class="subject-card">
+          <div class="subject-icon-big">⚡</div>
+          <h4>Physics</h4>
+          <p class="mt-2">Mechanics, Optics, Electricity, Thermodynamics, Modern Physics</p>
+        </div>
+      </div>
+      <div class="col-lg-3 col-md-6">
+        <div class="subject-card">
+          <div class="subject-icon-big">⚗️</div>
+          <h4>Chemistry</h4>
+          <p class="mt-2">Organic, Inorganic, Physical Chemistry, Periodic Table, Reactions</p>
+        </div>
+      </div>
+      <div class="col-lg-3 col-md-6">
+        <div class="subject-card">
+          <div class="subject-icon-big">🌿</div>
+          <h4>Biology</h4>
+          <p class="mt-2">Cell Biology, Genetics, Human Physiology, Ecology, Biotechnology</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ========== COUNTER ========== -->
+<section class="counter-section">
+  <div class="container">
+    <div class="row g-4 text-center">
+      <div class="col-6 col-md-3">
+        <div class="counter-item">
+          <div class="counter-num"><span data-count="500" data-suffix="+">0+</span></div>
+          <div class="counter-label">Total Students</div>
+        </div>
+      </div>
+      <div class="col-6 col-md-3">
+        <div class="counter-item">
+          <div class="counter-num"><span data-count="98" data-suffix="%">0%</span></div>
+          <div class="counter-label">Pass Rate</div>
+        </div>
+      </div>
+      <div class="col-6 col-md-3">
+        <div class="counter-item">
+          <div class="counter-num"><span data-count="10" data-suffix="+">0+</span></div>
+          <div class="counter-label">Expert Faculty</div>
+        </div>
+      </div>
+      <div class="col-6 col-md-3">
+        <div class="counter-item">
+          <div class="counter-num"><span data-count="10" data-suffix="+">0+</span></div>
+          <div class="counter-label">Years of Excellence</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ========== RESULTS PREVIEW ========== -->
+<section class="results-section">
+  <div class="container">
+    <div class="d-flex justify-content-between align-items-end mb-5 flex-wrap gap-3">
+      <div>
+        <h2 class="section-title">Student <span>Results</span></h2>
+        <p class="section-subtitle mt-4">Our students consistently achieve outstanding scores in board examinations.</p>
+      </div>
+      <a href="results.html" class="btn-primary-custom">
+        View All Results <i class="bi bi-arrow-right"></i>
+      </a>
+    </div>
+    <div class="row g-4">
+
+      <div class="col-lg-4 col-md-6">
+        <div class="result-card">
+          <div class="d-flex align-items-center gap-3 mb-3">
+            <div class="student-avatar" style="background:linear-gradient(135deg,#FF6B2B,#ff8c5a);">A</div>
+            <div>
+              <h5 style="font-size:1rem;margin:0;">Arjun Sharma</h5>
+              <small style="color:var(--gray);">Class 12 – PCM</small>
+            </div>
+            <div class="ms-auto"><span class="score-badge">97.4%</span></div>
+          </div>
+          <div class="stars mb-2">★★★★★</div>
+          <p style="font-size:0.85rem;color:var(--text-light);line-height:1.6;">"Spark's teaching transformed my understanding of Physics. I scored 99/100 in boards!"</p>
+          <div class="d-flex gap-2 mt-3 flex-wrap">
+            <span style="font-size:0.75rem;background:var(--light-gray);padding:2px 8px;border-radius:4px;">PSEB Board 2024</span>
+            <span style="font-size:0.75rem;background:rgba(255,107,43,0.1);color:var(--primary);padding:2px 8px;border-radius:4px;">🥇 District Topper</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="col-lg-4 col-md-6">
+        <div class="result-card">
+          <div class="d-flex align-items-center gap-3 mb-3">
+            <div class="student-avatar" style="background:linear-gradient(135deg,#4361ee,#7209b7);">P</div>
+            <div>
+              <h5 style="font-size:1rem;margin:0;">Priya Verma</h5>
+              <small style="color:var(--gray);">Class 10 – Science</small>
+            </div>
+            <div class="ms-auto"><span class="score-badge">96.8%</span></div>
+          </div>
+          <div class="stars mb-2">★★★★★</div>
+          <p style="font-size:0.85rem;color:var(--text-light);line-height:1.6;">"The doubt-clearing sessions at Spark are the best. I finally understood Algebra!"</p>
+          <div class="d-flex gap-2 mt-3 flex-wrap">
+            <span style="font-size:0.75rem;background:var(--light-gray);padding:2px 8px;border-radius:4px;">CBSE Board 2024</span>
+            <span style="font-size:0.75rem;background:rgba(0,201,167,0.1);color:var(--accent2);padding:2px 8px;border-radius:4px;">🥈 School Topper</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="col-lg-4 col-md-6">
+        <div class="result-card">
+          <div class="d-flex align-items-center gap-3 mb-3">
+            <div class="student-avatar" style="background:linear-gradient(135deg,#00C9A7,#009e84);">R</div>
+            <div>
+              <h5 style="font-size:1rem;margin:0;">Ravi Kumar</h5>
+              <small style="color:var(--gray);">Class 12 – PCB</small>
+            </div>
+            <div class="ms-auto"><span class="score-badge">95.2%</span></div>
+          </div>
+          <div class="stars mb-2">★★★★★</div>
+          <p style="font-size:0.85rem;color:var(--text-light);line-height:1.6;">"Got selected for NEET coaching track after scoring 99 in Biology. Thank you Spark!"</p>
+          <div class="d-flex gap-2 mt-3 flex-wrap">
+            <span style="font-size:0.75rem;background:var(--light-gray);padding:2px 8px;border-radius:4px;">PSEB Board 2024</span>
+            <span style="font-size:0.75rem;background:rgba(114,9,183,0.1);color:#7209b7;padding:2px 8px;border-radius:4px;">🎯 NEET Aspirant</span>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- ========== WHY SPARK ========== -->
+<section style="padding:100px 0;background:var(--light);">
+  <div class="container">
+    <div class="row align-items-center g-5">
+      <div class="col-lg-5">
+        <h2 class="section-title">Why Choose <span>Spark?</span></h2>
+        <p class="section-subtitle mt-4">We don't just teach – we build champions who excel in exams and beyond.</p>
+        <a href="about.html" class="btn-primary-custom mt-4">Learn About Us <i class="bi bi-arrow-right"></i></a>
+      </div>
+      <div class="col-lg-7">
+        <div class="row g-3">
+          <div class="col-6">
+            <div style="background:white;border-radius:14px;padding:1.5rem;border:1px solid var(--border);height:100%;">
+              <div style="font-size:1.8rem;margin-bottom:0.7rem;">👨‍🏫</div>
+              <h5 style="font-size:0.95rem;">Expert Faculty</h5>
+              <p style="font-size:0.82rem;color:var(--text-light);">Experienced teachers with M.Sc. & B.Ed. qualifications and 10+ years of teaching</p>
+            </div>
+          </div>
+          <div class="col-6">
+            <div style="background:white;border-radius:14px;padding:1.5rem;border:1px solid var(--border);height:100%;">
+              <div style="font-size:1.8rem;margin-bottom:0.7rem;">👥</div>
+              <h5 style="font-size:0.95rem;">Small Batches</h5>
+              <p style="font-size:0.82rem;color:var(--text-light);">Max 15 students per batch for personal attention and focused learning</p>
+            </div>
+          </div>
+          <div class="col-6">
+            <div style="background:white;border-radius:14px;padding:1.5rem;border:1px solid var(--border);height:100%;">
+              <div style="font-size:1.8rem;margin-bottom:0.7rem;">📊</div>
+              <h5 style="font-size:0.95rem;">Regular Tests</h5>
+              <p style="font-size:0.82rem;color:var(--text-light);">Weekly assessments, monthly model exams, and detailed performance reports</p>
+            </div>
+          </div>
+          <div class="col-6">
+            <div style="background:white;border-radius:14px;padding:1.5rem;border:1px solid var(--border);height:100%;">
+              <div style="font-size:1.8rem;margin-bottom:0.7rem;">📱</div>
+              <h5 style="font-size:0.95rem;">Parent Updates</h5>
+              <p style="font-size:0.82rem;color:var(--text-light);">Regular progress reports and WhatsApp updates to parents every week</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ========== CTA ========== -->
+<section style="background:var(--secondary);padding:80px 0;text-align:center;position:relative;overflow:hidden;">
+  <div style="position:absolute;inset:0;background:radial-gradient(ellipse at center, rgba(255,107,43,0.12) 0%, transparent 70%);"></div>
+  <div class="container position-relative">
+    <h2 style="font-family:'Syne',sans-serif;font-size:2.5rem;font-weight:800;color:white;margin-bottom:1rem;">Ready to <span style="color:var(--primary);">Spark</span> Your Journey?</h2>
+    <p style="color:rgba(255,255,255,0.6);font-size:1rem;max-width:500px;margin:0 auto 2rem;">Limited seats available for 2024–25 academic session. Book a free demo class today.</p>
+    <div class="d-flex gap-3 justify-content-center flex-wrap">
+      <a href="contact.html" class="btn-primary-custom">📞 Book Free Demo</a>
+      <a href="gallery.html" class="btn-outline-custom">🖼️ View Gallery</a>
+    </div>
+  </div>
+</section>
+
+<div id="footer-placeholder"></div>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.2/js/bootstrap.bundle.min.js"></script>
+<script src="js/components.js"></script>
+<script src="js/main.js"></script>
 </body>
 </html>
