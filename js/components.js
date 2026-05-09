@@ -19,6 +19,7 @@ const NAVBAR_HTML = `
         <li class="nav-item"><a class="nav-link" href="about.html">About</a></li>
         <li class="nav-item"><a class="nav-link" href="results.html">Results</a></li>
         <li class="nav-item"><a class="nav-link" href="gallery.html">Gallery</a></li>
+        <li class="nav-item"><a class="nav-link" href="reviews.html">Reviews</a></li>
         <li class="nav-item"><a class="nav-link" href="contact.html">Contact</a></li>
         <li class="nav-item ms-2">
           <a class="btn-primary-custom" href="contact.html" style="padding:0.5rem 1.2rem;font-size:0.85rem;">
@@ -53,6 +54,7 @@ const FOOTER_HTML = `
         <a href="about.html">About Us</a>
         <a href="results.html">Student Results</a>
         <a href="gallery.html">Gallery</a>
+        <a href="reviews.html">Reviews</a>
         <a href="contact.html">Contact Us</a>
       </div>
       <div class="col-lg-3 col-6 footer-links">
