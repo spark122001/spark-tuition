@@ -65,15 +65,15 @@ const FOOTER_HTML = `
       </div>
       <div class="col-lg-3 footer-links">
         <h6>Contact</h6>
-        <p style="font-size:0.88rem;line-height:1.7;">📍 Near Bus Stand, Civil Lines<br>Ropar, Punjab – 140001</p>
-        <p style="font-size:0.88rem;margin-top:0.7rem;">📞 +91 98765 43210</p>
-        <p style="font-size:0.88rem;">✉️ hello@sparktuition.in</p>
+        <p style="font-size:0.88rem;line-height:1.7;">📍 Maruti Vihar<br>Gurugram, Haryana – 122001</p>
+        <p style="font-size:0.88rem;margin-top:0.7rem;">📞 +91 98112 34306</p>
+        <p style="font-size:0.88rem;">✉️ **@sparktuition.in</p>
         <p style="font-size:0.88rem;">🕐 Mon–Sat: 6AM–8PM</p>
       </div>
     </div>
   </div>
   <div class="footer-bottom">
-    <p style="color:rgba(255,255,255,0.3);font-size:0.82rem;">© 2024 Spark Tuition Center, Ropar, Punjab. All rights reserved.</p>
+    <p style="color:rgba(255,255,255,0.3);font-size:0.82rem;">© 2024 Spark Tuition Center, Gurugram, Haryana. All rights reserved.</p>
   </div>
 </footer>
 <button class="back-top" id="backToTop" title="Back to Top">
