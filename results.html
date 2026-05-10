@@ -138,7 +138,28 @@
 <div id="footer-placeholder"></div>
 
 <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.2/js/bootstrap.bundle.min.js"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/xlsx/0.18.5/xlsx.min.js"></script>
+<!-- SheetJS: primary CDN with unpkg fallback loaded dynamically -->
+<script>
+  (function loadXLSX(callback) {
+    var primary = 'https://cdnjs.cloudflare.com/ajax/libs/xlsx/0.18.5/xlsx.full.min.js';
+    var fallback = 'https://unpkg.com/xlsx@0.18.5/dist/xlsx.full.min.js';
+    function tryLoad(url, onFail) {
+      var s = document.createElement('script');
+      s.src = url;
+      s.onload = callback;
+      s.onerror = onFail || function(){};
+      document.head.appendChild(s);
+    }
+    tryLoad(primary, function() { tryLoad(fallback, function() {
+      document.getElementById('statusText').textContent =
+        'Failed to load XLSX library. Check your internet connection.';
+      document.getElementById('statusIcon').textContent = '✗';
+    }); });
+  })(function() {
+    // XLSX is now confirmed available — boot the app
+    if (typeof window.__xlsxReady === 'function') window.__xlsxReady();
+  });
+</script>
 <script src="js/components.js"></script>
 <script src="js/main.js"></script>
 
@@ -463,10 +484,20 @@
   }
 
   // ─────────────────────────────────────────────────────────────
-  // Boot
+  // Boot — waits for XLSX library to be confirmed ready
   // ─────────────────────────────────────────────────────────────
   renderTestimonials();
-  loadExcelFromServer();   // auto-loads files/results.xlsx
+
+  // If XLSX already loaded by the time this script runs, go now.
+  // Otherwise the loader above will call window.__xlsxReady() once ready.
+  function boot() {
+    if (typeof XLSX !== 'undefined') {
+      loadExcelFromServer();
+    } else {
+      window.__xlsxReady = loadExcelFromServer;
+    }
+  }
+  boot();
 </script>
 </body>
 </html>
