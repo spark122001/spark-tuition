@@ -27,13 +27,12 @@
   </div>
 </section>
 
-<!-- EXCEL FILE UPLOAD -->
-<section style="padding:30px 0;background:var(--white);">
+<!-- FILE LOAD STATUS -->
+<section style="padding:20px 0;background:var(--white);">
   <div class="container">
-    <div style="display:flex;align-items:center;gap:1rem;flex-wrap:wrap;">
-      <label for="excelFile" style="margin:0;font-weight:500;color:var(--gray);">Upload Results Excel File:</label>
-      <input type="file" id="excelFile" accept=".xlsx,.xls" style="max-width:300px;" />
-      <span id="fileStatus" style="font-size:0.85rem;color:var(--gray);"></span>
+    <div id="fileStatus" style="font-size:0.9rem;color:var(--gray);display:flex;align-items:center;gap:0.5rem;">
+      <span id="statusIcon">⏳</span>
+      <span id="statusText">Loading results data…</span>
     </div>
   </div>
 </section>
@@ -144,8 +143,15 @@
 <script src="js/main.js"></script>
 
 <script>
-  // Excel file reading and data management
+  // ─────────────────────────────────────────────────────────────
+  // CONFIG: Place your Excel file at  files/results.xlsx
+  // relative to this HTML file. Rename the constant below if
+  // you use a different filename.
+  // ─────────────────────────────────────────────────────────────
+  const EXCEL_FILE_PATH = 'files/results.xlsx';
+
   let resultsData = {};
+
   const colorMap = {
     '1': { bg: 'linear-gradient(135deg,#FF6B2B,#ff8c5a)', text: '#FF6B2B' },
     '2': { bg: 'linear-gradient(135deg,#4361ee,#7209b7)', text: '#4361ee' },
@@ -156,106 +162,124 @@
 
   const achievementColors = {
     'District Topper': { bg: 'rgba(255,215,0,0.1)', text: '#B8860B' },
-    'State Merit': { bg: 'rgba(0,201,167,0.1)', text: '#00C9A7' },
-    'JEE Qualified': { bg: 'rgba(67,97,238,0.1)', text: '#4361ee' },
-    'NEET Qualified': { bg: 'rgba(0,201,167,0.1)', text: '#00C9A7' },
-    'NEET Aspirant': { bg: 'rgba(114,9,183,0.1)', text: '#7209b7' },
-    'School Topper': { bg: 'rgba(255,107,43,0.1)', text: '#FF6B2B' },
-    'Merit List': { bg: 'rgba(0,201,167,0.1)', text: '#00C9A7' },
+    'State Merit':     { bg: 'rgba(0,201,167,0.1)', text: '#00C9A7' },
+    'JEE Qualified':   { bg: 'rgba(67,97,238,0.1)', text: '#4361ee' },
+    'NEET Qualified':  { bg: 'rgba(0,201,167,0.1)', text: '#00C9A7' },
+    'NEET Aspirant':   { bg: 'rgba(114,9,183,0.1)', text: '#7209b7' },
+    'School Topper':   { bg: 'rgba(255,107,43,0.1)', text: '#FF6B2B' },
+    'Merit List':      { bg: 'rgba(0,201,167,0.1)', text: '#00C9A7' },
     'District Top 10': { bg: 'rgba(255,107,43,0.1)', text: '#FF6B2B' }
   };
 
-  document.getElementById('excelFile').addEventListener('change', function(e) {
-    const file = e.target.files[0];
-    if (!file) return;
+  // ─────────────────────────────────────────────────────────────
+  // Auto-load Excel from the local files/ directory on page load
+  // NOTE: This requires the page to be served via a web server
+  //       (e.g. VS Code Live Server, Python http.server, NGINX).
+  //       Opening the HTML directly as a file:// URL will be
+  //       blocked by the browser's CORS policy.
+  // ─────────────────────────────────────────────────────────────
+  async function loadExcelFromServer() {
+    setStatus('loading', 'Loading results data…');
 
-    const reader = new FileReader();
-    reader.onload = function(event) {
-      try {
-        const data = event.target.result;
-        const workbook = XLSX.read(data, { type: 'binary' });
-        resultsData = parseExcelData(workbook);
-        
-        if (Object.keys(resultsData).length > 0) {
-          document.getElementById('fileStatus').textContent = '✓ File loaded successfully';
-          document.getElementById('fileStatus').style.color = '#00C9A7';
-          populateYearFilter();
-          renderResults('all');
-        } else {
-          document.getElementById('fileStatus').textContent = '✗ No valid data found in Excel file';
-          document.getElementById('fileStatus').style.color = '#FF6B2B';
-        }
-      } catch (error) {
-        console.error('Error reading Excel file:', error);
-        document.getElementById('fileStatus').textContent = '✗ Error reading file: ' + error.message;
-        document.getElementById('fileStatus').style.color = '#FF6B2B';
+    try {
+      const response = await fetch(EXCEL_FILE_PATH);
+
+      if (!response.ok) {
+        throw new Error(`File not found at "${EXCEL_FILE_PATH}" (HTTP ${response.status}). Make sure the file exists in the files/ folder and you are running a local web server.`);
       }
-    };
-    reader.readAsBinaryString(file);
-  });
 
+      const arrayBuffer = await response.arrayBuffer();
+      const data        = new Uint8Array(arrayBuffer);
+      const workbook    = XLSX.read(data, { type: 'array' });
+
+      resultsData = parseExcelData(workbook);
+
+      if (Object.keys(resultsData).length === 0) {
+        throw new Error('No valid data found in the Excel file. Check that your sheet has the required columns (Year, Class, Student Name, Score…).');
+      }
+
+      setStatus('ok', `Results loaded successfully from ${EXCEL_FILE_PATH}`);
+      populateYearFilter();
+      renderResults('all');
+
+    } catch (err) {
+      console.error('Excel load error:', err);
+      setStatus('error', err.message);
+    }
+  }
+
+  function setStatus(type, message) {
+    const icon = document.getElementById('statusIcon');
+    const text = document.getElementById('statusText');
+    const colors = { loading: '#888', ok: '#00C9A7', error: '#FF6B2B' };
+    const icons  = { loading: '⏳',   ok: '✓',       error: '✗' };
+    icon.textContent        = icons[type]  || '•';
+    text.textContent        = message;
+    text.style.color        = colors[type] || '#888';
+    icon.style.color        = colors[type] || '#888';
+  }
+
+  // ─────────────────────────────────────────────────────────────
+  // Parse workbook → { year: { class: [ student, … ] } }
+  // ─────────────────────────────────────────────────────────────
   function parseExcelData(workbook) {
     const results = {};
-    
+
     workbook.SheetNames.forEach(sheetName => {
-      const sheet = workbook.Sheets[sheetName];
+      const sheet    = workbook.Sheets[sheetName];
       const jsonData = XLSX.utils.sheet_to_json(sheet);
-      
-      if (jsonData.length > 0) {
-        // Assume first sheet or specific sheet name contains results
-        jsonData.forEach(row => {
-          const year = row.Year || row.year || '2024';
-          const studentClass = row.Class || row.class || 'Class 12';
-          
-          if (!results[year]) {
-            results[year] = {};
-          }
-          if (!results[year][studentClass]) {
-            results[year][studentClass] = [];
-          }
-          
-          results[year][studentClass].push({
-            rank: row.Rank || row.rank || results[year][studentClass].length + 1,
-            name: row['Student Name'] || row['Name'] || 'N/A',
-            stream: row.Stream || row.stream || row.Board || 'N/A',
-            score: parseFloat(row.Score || row.score || 0),
-            achievement: row.Achievement || row.achievement || '',
-            location: row.Location || row.location || ''
-          });
+
+      jsonData.forEach(row => {
+        const year         = String(row.Year  || row.year  || '2024');
+        const studentClass = String(row.Class || row.class || 'Class 12');
+
+        if (!results[year])              results[year]              = {};
+        if (!results[year][studentClass]) results[year][studentClass] = [];
+
+        results[year][studentClass].push({
+          rank        : row.Rank        || row.rank        || results[year][studentClass].length + 1,
+          name        : row['Student Name'] || row['Name'] || 'N/A',
+          stream      : row.Stream      || row.stream      || row.Board || 'N/A',
+          score       : parseFloat(row.Score || row.score || 0),
+          achievement : row.Achievement || row.achievement || '',
+          location    : row.Location    || row.location    || ''
         });
-        
-        // Sort each class by score descending
-        Object.keys(results[year]).forEach(cls => {
-          results[year][cls].sort((a, b) => b.score - a.score);
-          results[year][cls] = results[year][cls].map((student, index) => ({
-            ...student,
-            rank: index + 1
-          }));
-        });
-      }
+      });
     });
-    
+
+    // Sort each class by score descending and re-rank
+    Object.keys(results).forEach(year => {
+      Object.keys(results[year]).forEach(cls => {
+        results[year][cls].sort((a, b) => b.score - a.score);
+        results[year][cls] = results[year][cls].map((student, index) => ({
+          ...student,
+          rank: index + 1
+        }));
+      });
+    });
+
     return results;
   }
 
+  // ─────────────────────────────────────────────────────────────
+  // Year filter buttons
+  // ─────────────────────────────────────────────────────────────
   function populateYearFilter() {
-    const years = Object.keys(resultsData).sort((a, b) => b - a);
+    const years           = Object.keys(resultsData).sort((a, b) => b - a);
     const filterContainer = document.getElementById('yearFilter');
-    
-    // Clear existing buttons except "All Years"
+
     filterContainer.innerHTML = '<button class="year-btn active" data-year="all">All Years</button>';
-    
+
     years.forEach(year => {
-      const btn = document.createElement('button');
-      btn.className = 'year-btn';
+      const btn       = document.createElement('button');
+      btn.className   = 'year-btn';
       btn.dataset.year = year;
       btn.textContent = year;
       filterContainer.appendChild(btn);
     });
-    
-    // Add click listeners
+
     document.querySelectorAll('.year-btn').forEach(btn => {
-      btn.addEventListener('click', function() {
+      btn.addEventListener('click', function () {
         document.querySelectorAll('.year-btn').forEach(b => b.classList.remove('active'));
         this.classList.add('active');
         renderResults(this.dataset.year);
@@ -263,44 +287,44 @@
     });
   }
 
+  // ─────────────────────────────────────────────────────────────
+  // Render results table
+  // ─────────────────────────────────────────────────────────────
   function renderResults(selectedYear) {
-    const container = document.getElementById('resultsContainer');
+    const container  = document.getElementById('resultsContainer');
     container.innerHTML = '';
-    
-    const yearsToShow = selectedYear === 'all' 
-      ? Object.keys(resultsData).sort((a, b) => b - a) 
+
+    const yearsToShow = selectedYear === 'all'
+      ? Object.keys(resultsData).sort((a, b) => b - a)
       : [selectedYear];
-    
+
     yearsToShow.forEach(year => {
       const yearData = resultsData[year];
-      const classes = Object.keys(yearData).sort();
-      
-      const yearBlock = document.createElement('div');
-      yearBlock.className = 'year-block mb-5';
+      const classes  = Object.keys(yearData).sort();
+
+      const yearBlock       = document.createElement('div');
+      yearBlock.className   = 'year-block mb-5';
       yearBlock.dataset.year = year;
-      
-      // Calculate summary stats
-      let totalStudents = 0;
-      let passCount = 0;
-      let toppers90 = 0;
-      
+
+      // Summary stats
+      let totalStudents = 0, passCount = 0, toppers90 = 0;
       classes.forEach(cls => {
         totalStudents += yearData[cls].length;
-        passCount += yearData[cls].filter(s => s.score >= 35).length;
-        toppers90 += yearData[cls].filter(s => s.score >= 90).length;
+        passCount     += yearData[cls].filter(s => s.score >= 35).length;
+        toppers90     += yearData[cls].filter(s => s.score >= 90).length;
       });
-      
-      const passRate = totalStudents > 0 ? Math.round((passCount / totalStudents) * 100) : 0;
+
+      const passRate       = totalStudents > 0 ? Math.round((passCount / totalStudents) * 100) : 0;
       const districtToppers = Object.values(yearData).flat()
         .filter(s => s.achievement && s.achievement.toLowerCase().includes('district topper')).length;
-      
+
       let html = `
         <div class="result-year-header">
           <span class="result-year-badge">${year}</span>
-          <h4 style="margin:0;font-size:1.1rem;">Board Results ${year}–${parseInt(year)+1}</h4>
+          <h4 style="margin:0;font-size:1.1rem;">Board Results ${year}–${parseInt(year) + 1}</h4>
           <span style="margin-left:auto;font-size:0.82rem;color:var(--gray);">CBSE & PSEB Board Examinations</span>
         </div>
-        
+
         <div class="summary-cards">
           <div class="summary-card" style="background:linear-gradient(135deg,#FF6B2B,#ff8c5a);">
             <div class="value">${passRate}%</div>
@@ -320,7 +344,7 @@
           </div>
         </div>
       `;
-      
+
       classes.forEach(cls => {
         const classStudents = yearData[cls];
         html += `
@@ -341,11 +365,11 @@
               </thead>
               <tbody>
         `;
-        
-        classStudents.slice(0, 10).forEach((student, index) => {
-          const colors = colorMap[student.rank] || colorMap['5'];
+
+        classStudents.slice(0, 10).forEach(student => {
+          const colors          = colorMap[student.rank] || colorMap['5'];
           const achievementColor = achievementColors[student.achievement] || { bg: 'rgba(200,200,200,0.1)', text: '#999' };
-          
+
           html += `
             <tr>
               <td><div class="rank-badge rank-${student.rank > 3 ? 'other' : student.rank}">#${student.rank}</div></td>
@@ -377,20 +401,18 @@
             </tr>
           `;
         });
-        
-        html += `
-              </tbody>
-            </table>
-          </div>
-        `;
+
+        html += `</tbody></table></div>`;
       });
-      
+
       yearBlock.innerHTML = html;
       container.appendChild(yearBlock);
     });
   }
 
-  // Render testimonials (static for now, can also be pulled from Excel)
+  // ─────────────────────────────────────────────────────────────
+  // Testimonials (static)
+  // ─────────────────────────────────────────────────────────────
   const testimonials = [
     {
       name: 'Arjun Sharma',
@@ -418,31 +440,33 @@
   function renderTestimonials() {
     const container = document.getElementById('testimonialsContainer');
     container.innerHTML = '';
-    
-    testimonials.forEach(testimonial => {
+    testimonials.forEach(t => {
       const col = document.createElement('div');
       col.className = 'col-lg-4';
       col.innerHTML = `
         <div class="result-card">
           <div class="d-flex align-items-center gap-2 mb-3">
-            <div class="student-avatar" style="background:${testimonial.avatarGradient};width:44px;height:44px;font-size:1rem;margin:0;">
-              ${testimonial.avatar}
+            <div class="student-avatar" style="background:${t.avatarGradient};width:44px;height:44px;font-size:1rem;margin:0;">
+              ${t.avatar}
             </div>
             <div>
-              <div style="font-weight:600;font-size:0.92rem;">${testimonial.name}</div>
-              <small style="color:var(--gray);">${testimonial.class}</small>
+              <div style="font-weight:600;font-size:0.92rem;">${t.name}</div>
+              <small style="color:var(--gray);">${t.class}</small>
             </div>
             <div class="ms-auto stars">★★★★★</div>
           </div>
-          <p style="font-size:0.85rem;color:var(--text-light);line-height:1.7;">${testimonial.text}</p>
+          <p style="font-size:0.85rem;color:var(--text-light);line-height:1.7;">${t.text}</p>
         </div>
       `;
       container.appendChild(col);
     });
   }
 
-  // Initialize testimonials
+  // ─────────────────────────────────────────────────────────────
+  // Boot
+  // ─────────────────────────────────────────────────────────────
   renderTestimonials();
+  loadExcelFromServer();   // auto-loads files/results.xlsx
 </script>
 </body>
 </html>
