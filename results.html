@@ -125,15 +125,7 @@
   </div>
 </section>
 
-<!-- TESTIMONIALS -->
-<section style="padding:40px 0;background:var(--light);">
-  <div class="container">
-    <div class="mt-5 pt-4">
-      <h3 style="font-family:'Syne',sans-serif;font-weight:800;font-size:1.8rem;margin-bottom:2rem;">What Students <span style="color:var(--primary);">Say</span></h3>
-      <div class="row g-4" id="testimonialsContainer"></div>
-    </div>
-  </div>
-</section>
+
 
 <div id="footer-placeholder"></div>
 
@@ -431,57 +423,8 @@
     });
   }
 
-  // ─────────────────────────────────────────────────────────────
-  // Testimonials (static)
-  // ─────────────────────────────────────────────────────────────
-  const testimonials = [
-    {
-      name: 'Arjun Sharma',
-      class: 'Class 12, 2024',
-      avatar: 'A',
-      avatarGradient: 'linear-gradient(135deg,#FF6B2B,#ff8c5a)',
-      text: '"The faculty at Spark are truly exceptional. Their dedication and clarity in teaching complex Physics concepts helped me secure 97.4%. Highly recommended!"'
-    },
-    {
-      name: 'Simran Kaur',
-      class: 'Class 12, 2024',
-      avatar: 'S',
-      avatarGradient: 'linear-gradient(135deg,#4361ee,#7209b7)',
-      text: '"From struggling in Chemistry to getting 97 marks — Spark\'s small batches and personal attention made all the difference. Thank you!"'
-    },
-    {
-      name: 'Ravi Kumar',
-      class: 'Class 12, 2024',
-      avatar: 'R',
-      avatarGradient: 'linear-gradient(135deg,#00C9A7,#009e84)',
-      text: '"The weekly tests and detailed feedback kept me on track throughout the year. Spark\'s systematic approach to Biology is unmatched."'
-    }
-  ];
 
-  function renderTestimonials() {
-    const container = document.getElementById('testimonialsContainer');
-    container.innerHTML = '';
-    testimonials.forEach(t => {
-      const col = document.createElement('div');
-      col.className = 'col-lg-4';
-      col.innerHTML = `
-        <div class="result-card">
-          <div class="d-flex align-items-center gap-2 mb-3">
-            <div class="student-avatar" style="background:${t.avatarGradient};width:44px;height:44px;font-size:1rem;margin:0;">
-              ${t.avatar}
-            </div>
-            <div>
-              <div style="font-weight:600;font-size:0.92rem;">${t.name}</div>
-              <small style="color:var(--gray);">${t.class}</small>
-            </div>
-            <div class="ms-auto stars">★★★★★</div>
-          </div>
-          <p style="font-size:0.85rem;color:var(--text-light);line-height:1.7;">${t.text}</p>
-        </div>
-      `;
-      container.appendChild(col);
-    });
-  }
+
 
   // ─────────────────────────────────────────────────────────────
   // Boot — waits for XLSX library to be confirmed ready
