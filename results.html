@@ -327,7 +327,7 @@
         toppers90     += yearData[cls].filter(s => s.score >= 90).length;
       });
 
-      const passRate       = totalStudents > 0 ? Math.round((passCount / totalStudents) * 100) : 0;
+      // const passRate       = totalStudents > 0 ? Math.round((passCount / totalStudents) * 100) : 0;
       const districtToppers = Object.values(yearData).flat()
         .filter(s => s.achievement && s.achievement.toLowerCase().includes('district topper')).length;
 
@@ -335,14 +335,10 @@
         <div class="result-year-header">
           <span class="result-year-badge">${year}</span>
           <h4 style="margin:0;font-size:1.1rem;">Board Results ${year}–${parseInt(year) + 1}</h4>
-          <span style="margin-left:auto;font-size:0.82rem;color:var(--gray);">CBSE & PSEB Board Examinations</span>
+         
         </div>
 
         <div class="summary-cards">
-          <div class="summary-card" style="background:linear-gradient(135deg,#FF6B2B,#ff8c5a);">
-            <div class="value">${passRate}%</div>
-            <div class="label">Overall Pass Rate</div>
-          </div>
           <div class="summary-card" style="background:linear-gradient(135deg,#1A1A2E,#16213E);">
             <div class="value">${districtToppers}</div>
             <div class="label">District Toppers</div>
