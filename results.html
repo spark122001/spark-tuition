@@ -331,6 +331,12 @@
       const districtToppers = Object.values(yearData).flat()
         .filter(s => s.achievement && s.achievement.toLowerCase().includes('district topper')).length;
 
+      const schoolToppers = Object.values(yearData).flat()
+        .filter(s => s.achievement && s.achievement.toLowerCase().includes('school topper')).length;
+      
+       const stateMerit = Object.values(yearData).flat()
+        .filter(s => s.achievement && s.achievement.toLowerCase().includes('state merit')).length;
+
       let html = `
         <div class="result-year-header">
           <span class="result-year-badge">${year}</span>
@@ -339,13 +345,23 @@
         </div>
 
         <div class="summary-cards">
-          <div class="summary-card" style="background:linear-gradient(135deg,#1A1A2E,#16213E);">
-            <div class="value">${districtToppers}</div>
-            <div class="label">District Toppers</div>
-          </div>
+        
           <div class="summary-card" style="background:linear-gradient(135deg,#00C9A7,#009e84);">
             <div class="value">${toppers90}</div>
             <div class="label">90%+ Students</div>
+          </div>
+            <div class="summary-card" style="background:linear-gradient(135deg,#00C9A7,#009e84);">
+            <div class="value">${stateMerit}</div>
+            <div class="label">State Merit</div>
+          </div>
+            <div class="summary-card" style="background:linear-gradient(135deg,#00C9A7,#009e84);">
+            <div class="value">${schoolToppers}</div>
+            <div class="label">School Toppers</div>
+              
+              <div class="summary-card" style="background:linear-gradient(135deg,#1A1A2E,#16213E);">
+            <div class="value">${districtToppers}</div>
+            <div class="label">District Toppers</div>
+          </div>
           </div>
             </div>
       `;
