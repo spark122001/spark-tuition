@@ -27,14 +27,22 @@
   </div>
 </section>
 
+<!-- EXCEL FILE UPLOAD -->
+<section style="padding:30px 0;background:var(--white);">
+  <div class="container">
+    <div style="display:flex;align-items:center;gap:1rem;flex-wrap:wrap;">
+      <label for="excelFile" style="margin:0;font-weight:500;color:var(--gray);">Upload Results Excel File:</label>
+      <input type="file" id="excelFile" accept=".xlsx,.xls" style="max-width:300px;" />
+      <span id="fileStatus" style="font-size:0.85rem;color:var(--gray);"></span>
+    </div>
+  </div>
+</section>
+
 <!-- YEAR FILTER -->
 <section style="padding:50px 0 30px;background:var(--white);">
   <div class="container">
     <div class="d-flex gap-2 flex-wrap" id="yearFilter">
       <button class="year-btn active" data-year="all">All Years</button>
-      <button class="year-btn" data-year="2024">2024</button>
-      <button class="year-btn" data-year="2023">2023</button>
-      <button class="year-btn" data-year="2022">2022</button>
     </div>
   </div>
 </section>
@@ -64,6 +72,7 @@
   display: flex;
   align-items: center;
   gap: 1rem;
+  flex-wrap: wrap;
 }
 .result-year-badge {
   background: var(--secondary);
@@ -74,285 +83,55 @@
   font-weight: 700;
   font-size: 0.9rem;
 }
+.class-header {
+  background: rgba(67, 97, 238, 0.05);
+  border-left: 4px solid var(--primary);
+  padding: 0.8rem 1.2rem;
+  margin: 1.5rem 0 1rem 0;
+  border-radius: 4px;
+}
+.class-header h6 {
+  margin: 0;
+  font-weight: 600;
+  color: var(--secondary);
+  font-size: 0.95rem;
+}
+.summary-cards {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: 1rem;
+  margin-bottom: 2rem;
+}
+.summary-card {
+  border-radius: 12px;
+  padding: 1.2rem;
+  text-align: center;
+  color: white;
+}
+.summary-card .value {
+  font-family: 'Syne', sans-serif;
+  font-size: 2rem;
+  font-weight: 800;
+}
+.summary-card .label {
+  font-size: 0.75rem;
+  opacity: 0.85;
+}
 </style>
 
 <!-- TOPPERS SECTION -->
 <section style="padding:40px 0 100px;">
   <div class="container">
+    <div id="resultsContainer"></div>
+  </div>
+</section>
 
-    <!-- 2024 TOPPERS -->
-    <div class="year-block mb-5" data-year="2024">
-      <div class="result-year-header">
-        <span class="result-year-badge">2024</span>
-        <h4 style="margin:0;font-size:1.1rem;">Board Results 2023–24</h4>
-        <span style="margin-left:auto;font-size:0.82rem;color:var(--gray);">CBSE & PSEB Board Examinations</span>
-      </div>
-
-      <!-- Summary Cards -->
-      <div class="row g-3 mb-4">
-        <div class="col-md-3 col-6">
-          <div style="background:linear-gradient(135deg,#FF6B2B,#ff8c5a);border-radius:12px;padding:1.2rem;text-align:center;color:white;">
-            <div style="font-family:'Syne',sans-serif;font-size:2rem;font-weight:800;">98%</div>
-            <div style="font-size:0.75rem;opacity:0.85;">Overall Pass Rate</div>
-          </div>
-        </div>
-        <div class="col-md-3 col-6">
-          <div style="background:linear-gradient(135deg,#1A1A2E,#16213E);border-radius:12px;padding:1.2rem;text-align:center;color:white;">
-            <div style="font-family:'Syne',sans-serif;font-size:2rem;font-weight:800;">3</div>
-            <div style="font-size:0.75rem;opacity:0.85;">District Toppers</div>
-          </div>
-        </div>
-        <div class="col-md-3 col-6">
-          <div style="background:linear-gradient(135deg,#00C9A7,#009e84);border-radius:12px;padding:1.2rem;text-align:center;color:white;">
-            <div style="font-family:'Syne',sans-serif;font-size:2rem;font-weight:800;">47</div>
-            <div style="font-size:0.75rem;opacity:0.85;">90%+ Students</div>
-          </div>
-        </div>
-        <div class="col-md-3 col-6">
-          <div style="background:linear-gradient(135deg,#4361ee,#3a0ca3);border-radius:12px;padding:1.2rem;text-align:center;color:white;">
-            <div style="font-family:'Syne',sans-serif;font-size:2rem;font-weight:800;">120</div>
-            <div style="font-size:0.75rem;opacity:0.85;">Total Appeared</div>
-          </div>
-        </div>
-      </div>
-
-      <!-- Toppers Table Class 12 -->
-      <h5 style="font-size:1rem;margin-bottom:1rem;color:var(--secondary);">🏆 Class 12 Toppers – 2024</h5>
-      <div class="table-responsive mb-4">
-        <table class="toppers-table table">
-          <thead>
-            <tr>
-              <th>Rank</th><th>Student Name</th><th>Stream</th>
-              <th>Score</th><th>Performance</th><th>Achievement</th>
-            </tr>
-          </thead>
-          <tbody>
-            <tr>
-              <td><div class="rank-badge rank-1">#1</div></td>
-              <td><div class="d-flex align-items-center gap-2">
-                <div class="student-avatar" style="background:linear-gradient(135deg,#FF6B2B,#ff8c5a);width:36px;height:36px;font-size:0.95rem;margin:0;">A</div>
-                <div><div style="font-weight:500;font-size:0.9rem;">Arjun Sharma</div><small style="color:var(--gray);">Ropar</small></div>
-              </div></td>
-              <td>PCM</td>
-              <td><strong style="color:var(--primary);">97.4%</strong></td>
-              <td><div class="percentage-bar"><div class="percentage-fill" style="width:97.4%;"></div></div></td>
-              <td><span style="background:rgba(255,215,0,0.1);color:#B8860B;padding:2px 8px;border-radius:4px;font-size:0.75rem;">District Topper</span></td>
-            </tr>
-            <tr>
-              <td><div class="rank-badge rank-2">#2</div></td>
-              <td><div class="d-flex align-items-center gap-2">
-                <div class="student-avatar" style="background:linear-gradient(135deg,#4361ee,#7209b7);width:36px;height:36px;font-size:0.95rem;margin:0;">S</div>
-                <div><div style="font-weight:500;font-size:0.9rem;">Simran Kaur</div><small style="color:var(--gray);">Morinda</small></div>
-              </div></td>
-              <td>PCB</td>
-              <td><strong style="color:var(--primary);">96.6%</strong></td>
-              <td><div class="percentage-bar"><div class="percentage-fill" style="width:96.6%;"></div></div></td>
-              <td><span style="background:rgba(0,201,167,0.1);color:var(--accent2);padding:2px 8px;border-radius:4px;font-size:0.75rem;">State Merit</span></td>
-            </tr>
-            <tr>
-              <td><div class="rank-badge rank-3">#3</div></td>
-              <td><div class="d-flex align-items-center gap-2">
-                <div class="student-avatar" style="background:linear-gradient(135deg,#00C9A7,#009e84);width:36px;height:36px;font-size:0.95rem;margin:0;">R</div>
-                <div><div style="font-weight:500;font-size:0.9rem;">Rahul Gupta</div><small style="color:var(--gray);">Ropar</small></div>
-              </div></td>
-              <td>PCM</td>
-              <td><strong style="color:var(--primary);">95.8%</strong></td>
-              <td><div class="percentage-bar"><div class="percentage-fill" style="width:95.8%;"></div></div></td>
-              <td><span style="background:rgba(67,97,238,0.1);color:#4361ee;padding:2px 8px;border-radius:4px;font-size:0.75rem;">JEE Qualified</span></td>
-            </tr>
-            <tr>
-              <td><div class="rank-badge rank-other">#4</div></td>
-              <td><div class="d-flex align-items-center gap-2">
-                <div class="student-avatar" style="background:linear-gradient(135deg,#f72585,#b5179e);width:36px;height:36px;font-size:0.95rem;margin:0;">M</div>
-                <div><div style="font-weight:500;font-size:0.9rem;">Meera Patel</div><small style="color:var(--gray);">Anandpur</small></div>
-              </div></td>
-              <td>PCB</td>
-              <td><strong style="color:var(--primary);">94.4%</strong></td>
-              <td><div class="percentage-bar"><div class="percentage-fill" style="width:94.4%;"></div></div></td>
-              <td><span style="background:rgba(114,9,183,0.1);color:#7209b7;padding:2px 8px;border-radius:4px;font-size:0.75rem;">NEET Aspirant</span></td>
-            </tr>
-            <tr>
-              <td><div class="rank-badge rank-other">#5</div></td>
-              <td><div class="d-flex align-items-center gap-2">
-                <div class="student-avatar" style="background:linear-gradient(135deg,#FFD700,#f0b800);width:36px;height:36px;font-size:0.95rem;margin:0;color:#333;">K</div>
-                <div><div style="font-weight:500;font-size:0.9rem;">Karan Singh</div><small style="color:var(--gray);">Ropar</small></div>
-              </div></td>
-              <td>PCM</td>
-              <td><strong style="color:var(--primary);">93.2%</strong></td>
-              <td><div class="percentage-bar"><div class="percentage-fill" style="width:93.2%;"></div></div></td>
-              <td><span style="background:rgba(255,107,43,0.1);color:var(--primary);padding:2px 8px;border-radius:4px;font-size:0.75rem;">School Topper</span></td>
-            </tr>
-          </tbody>
-        </table>
-      </div>
-
-      <!-- Class 10 -->
-      <h5 style="font-size:1rem;margin-bottom:1rem;color:var(--secondary);">🥇 Class 10 Toppers – 2024</h5>
-      <div class="table-responsive">
-        <table class="toppers-table table">
-          <thead>
-            <tr><th>Rank</th><th>Student Name</th><th>Board</th><th>Score</th><th>Performance</th><th>Achievement</th></tr>
-          </thead>
-          <tbody>
-            <tr>
-              <td><div class="rank-badge rank-1">#1</div></td>
-              <td><div class="d-flex align-items-center gap-2">
-                <div class="student-avatar" style="background:linear-gradient(135deg,#4361ee,#3a0ca3);width:36px;height:36px;font-size:0.95rem;margin:0;">P</div>
-                <div><div style="font-weight:500;font-size:0.9rem;">Priya Verma</div></div>
-              </div></td>
-              <td>CBSE</td>
-              <td><strong style="color:var(--primary);">96.8%</strong></td>
-              <td><div class="percentage-bar"><div class="percentage-fill" style="width:96.8%;"></div></div></td>
-              <td><span style="background:rgba(255,215,0,0.1);color:#B8860B;padding:2px 8px;border-radius:4px;font-size:0.75rem;">School Topper</span></td>
-            </tr>
-            <tr>
-              <td><div class="rank-badge rank-2">#2</div></td>
-              <td><div class="d-flex align-items-center gap-2">
-                <div class="student-avatar" style="background:linear-gradient(135deg,#f72585,#b5179e);width:36px;height:36px;font-size:0.95rem;margin:0;">N</div>
-                <div><div style="font-weight:500;font-size:0.9rem;">Naman Verma</div></div>
-              </div></td>
-              <td>PSEB</td>
-              <td><strong style="color:var(--primary);">95.0%</strong></td>
-              <td><div class="percentage-bar"><div class="percentage-fill" style="width:95%;"></div></div></td>
-              <td><span style="background:rgba(0,201,167,0.1);color:var(--accent2);padding:2px 8px;border-radius:4px;font-size:0.75rem;">Merit List</span></td>
-            </tr>
-            <tr>
-              <td><div class="rank-badge rank-3">#3</div></td>
-              <td><div class="d-flex align-items-center gap-2">
-                <div class="student-avatar" style="background:linear-gradient(135deg,#FFD700,#f0b800);width:36px;height:36px;font-size:0.95rem;margin:0;color:#333;">A</div>
-                <div><div style="font-weight:500;font-size:0.9rem;">Anika Joshi</div></div>
-              </div></td>
-              <td>CBSE</td>
-              <td><strong style="color:var(--primary);">94.6%</strong></td>
-              <td><div class="percentage-bar"><div class="percentage-fill" style="width:94.6%;"></div></div></td>
-              <td><span style="background:rgba(255,107,43,0.1);color:var(--primary);padding:2px 8px;border-radius:4px;font-size:0.75rem;">District Top 10</span></td>
-            </tr>
-          </tbody>
-        </table>
-      </div>
-    </div>
-
-    <!-- 2023 TOPPERS -->
-    <div class="year-block mb-5" data-year="2023">
-      <div class="result-year-header">
-        <span class="result-year-badge">2023</span>
-        <h4 style="margin:0;font-size:1.1rem;">Board Results 2022–23</h4>
-        <span style="margin-left:auto;font-size:0.82rem;color:var(--gray);">CBSE & PSEB Board Examinations</span>
-      </div>
-      <div class="row g-3 mb-4">
-        <div class="col-md-3 col-6">
-          <div style="background:var(--secondary);border-radius:12px;padding:1.2rem;text-align:center;color:white;">
-            <div style="font-family:'Syne',sans-serif;font-size:2rem;font-weight:800;">97%</div>
-            <div style="font-size:0.75rem;opacity:0.85;">Overall Pass Rate</div>
-          </div>
-        </div>
-        <div class="col-md-3 col-6">
-          <div style="background:linear-gradient(135deg,#FF6B2B,#e85a1a);border-radius:12px;padding:1.2rem;text-align:center;color:white;">
-            <div style="font-family:'Syne',sans-serif;font-size:2rem;font-weight:800;">2</div>
-            <div style="font-size:0.75rem;opacity:0.85;">District Toppers</div>
-          </div>
-        </div>
-        <div class="col-md-3 col-6">
-          <div style="background:linear-gradient(135deg,#4361ee,#3a0ca3);border-radius:12px;padding:1.2rem;text-align:center;color:white;">
-            <div style="font-family:'Syne',sans-serif;font-size:2rem;font-weight:800;">38</div>
-            <div style="font-size:0.75rem;opacity:0.85;">90%+ Students</div>
-          </div>
-        </div>
-        <div class="col-md-3 col-6">
-          <div style="background:linear-gradient(135deg,#00C9A7,#009e84);border-radius:12px;padding:1.2rem;text-align:center;color:white;">
-            <div style="font-family:'Syne',sans-serif;font-size:2rem;font-weight:800;">105</div>
-            <div style="font-size:0.75rem;opacity:0.85;">Total Appeared</div>
-          </div>
-        </div>
-      </div>
-      <div class="table-responsive">
-        <table class="toppers-table table">
-          <thead>
-            <tr><th>Rank</th><th>Student Name</th><th>Class</th><th>Score</th><th>Performance</th><th>Achievement</th></tr>
-          </thead>
-          <tbody>
-            <tr>
-              <td><div class="rank-badge rank-1">#1</div></td>
-              <td>Harsh Vardhan</td><td>Class 12 – PCM</td>
-              <td><strong style="color:var(--primary);">96.2%</strong></td>
-              <td><div class="percentage-bar"><div class="percentage-fill" style="width:96.2%;"></div></div></td>
-              <td><span style="background:rgba(255,215,0,0.1);color:#B8860B;padding:2px 8px;border-radius:4px;font-size:0.75rem;">District Topper</span></td>
-            </tr>
-            <tr>
-              <td><div class="rank-badge rank-2">#2</div></td>
-              <td>Ishita Malhotra</td><td>Class 12 – PCB</td>
-              <td><strong style="color:var(--primary);">95.4%</strong></td>
-              <td><div class="percentage-bar"><div class="percentage-fill" style="width:95.4%;"></div></div></td>
-              <td><span style="background:rgba(0,201,167,0.1);color:var(--accent2);padding:2px 8px;border-radius:4px;font-size:0.75rem;">NEET Qualified</span></td>
-            </tr>
-            <tr>
-              <td><div class="rank-badge rank-3">#3</div></td>
-              <td>Vikas Thakur</td><td>Class 10</td>
-              <td><strong style="color:var(--primary);">94.8%</strong></td>
-              <td><div class="percentage-bar"><div class="percentage-fill" style="width:94.8%;"></div></div></td>
-              <td><span style="background:rgba(255,107,43,0.1);color:var(--primary);padding:2px 8px;border-radius:4px;font-size:0.75rem;">School Topper</span></td>
-            </tr>
-          </tbody>
-        </table>
-      </div>
-    </div>
-
-    <!-- 2022 -->
-    <div class="year-block mb-5" data-year="2022">
-      <div class="result-year-header">
-        <span class="result-year-badge">2022</span>
-        <h4 style="margin:0;font-size:1.1rem;">Board Results 2021–22</h4>
-        <span style="margin-left:auto;font-size:0.82rem;color:var(--gray);">CBSE & PSEB Board Examinations</span>
-      </div>
-      <div class="table-responsive">
-        <table class="toppers-table table">
-          <thead>
-            <tr><th>Rank</th><th>Student Name</th><th>Class</th><th>Score</th><th>Performance</th></tr>
-          </thead>
-          <tbody>
-            <tr><td><div class="rank-badge rank-1">#1</div></td><td>Ananya Singh</td><td>Class 12 – PCM</td><td><strong style="color:var(--primary);">97.8%</strong></td><td><div class="percentage-bar"><div class="percentage-fill" style="width:97.8%;"></div></div></td></tr>
-            <tr><td><div class="rank-badge rank-2">#2</div></td><td>Rohan Mehta</td><td>Class 12 – PCB</td><td><strong style="color:var(--primary);">96.0%</strong></td><td><div class="percentage-bar"><div class="percentage-fill" style="width:96%;"></div></div></td></tr>
-            <tr><td><div class="rank-badge rank-3">#3</div></td><td>Divya Rana</td><td>Class 10</td><td><strong style="color:var(--primary);">95.4%</strong></td><td><div class="percentage-bar"><div class="percentage-fill" style="width:95.4%;"></div></div></td></tr>
-          </tbody>
-        </table>
-      </div>
-    </div>
-
-    <!-- TESTIMONIALS -->
+<!-- TESTIMONIALS -->
+<section style="padding:40px 0;background:var(--light);">
+  <div class="container">
     <div class="mt-5 pt-4">
       <h3 style="font-family:'Syne',sans-serif;font-weight:800;font-size:1.8rem;margin-bottom:2rem;">What Students <span style="color:var(--primary);">Say</span></h3>
-      <div class="row g-4">
-        <div class="col-lg-4">
-          <div class="result-card">
-            <div class="d-flex align-items-center gap-2 mb-3">
-              <div class="student-avatar" style="background:linear-gradient(135deg,#FF6B2B,#ff8c5a);width:44px;height:44px;font-size:1rem;margin:0;">A</div>
-              <div><div style="font-weight:600;font-size:0.92rem;">Arjun Sharma</div><small style="color:var(--gray);">Class 12, 2024</small></div>
-              <div class="ms-auto stars">★★★★★</div>
-            </div>
-            <p style="font-size:0.85rem;color:var(--text-light);line-height:1.7;">"The faculty at Spark are truly exceptional. Their dedication and clarity in teaching complex Physics concepts helped me score 99/100 in boards!"</p>
-          </div>
-        </div>
-        <div class="col-lg-4">
-          <div class="result-card">
-            <div class="d-flex align-items-center gap-2 mb-3">
-              <div class="student-avatar" style="background:linear-gradient(135deg,#4361ee,#7209b7);width:44px;height:44px;font-size:1rem;margin:0;">S</div>
-              <div><div style="font-weight:600;font-size:0.92rem;">Simran Kaur</div><small style="color:var(--gray);">Class 12, 2024</small></div>
-              <div class="ms-auto stars">★★★★★</div>
-            </div>
-            <p style="font-size:0.85rem;color:var(--text-light);line-height:1.7;">"From struggling in Chemistry to getting 97 marks — Spark's small batches and personal attention made all the difference. Truly life-changing!"</p>
-          </div>
-        </div>
-        <div class="col-lg-4">
-          <div class="result-card">
-            <div class="d-flex align-items-center gap-2 mb-3">
-              <div class="student-avatar" style="background:linear-gradient(135deg,#00C9A7,#009e84);width:44px;height:44px;font-size:1rem;margin:0;">R</div>
-              <div><div style="font-weight:600;font-size:0.92rem;">Ravi Kumar</div><small style="color:var(--gray);">Class 12, 2024</small></div>
-              <div class="ms-auto stars">★★★★★</div>
-            </div>
-            <p style="font-size:0.85rem;color:var(--text-light);line-height:1.7;">"The weekly tests and detailed feedback kept me on track throughout the year. Spark's systematic approach to Biology is unmatched in Ropar!"</p>
-          </div>
-        </div>
-      </div>
+      <div class="row g-4" id="testimonialsContainer"></div>
     </div>
   </div>
 </section>
@@ -360,20 +139,310 @@
 <div id="footer-placeholder"></div>
 
 <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.2/js/bootstrap.bundle.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/xlsx/0.18.5/xlsx.min.js"></script>
 <script src="js/components.js"></script>
 <script src="js/main.js"></script>
+
 <script>
-  // Year filter
-  document.querySelectorAll('.year-btn').forEach(btn => {
-    btn.addEventListener('click', function() {
-      document.querySelectorAll('.year-btn').forEach(b => b.classList.remove('active'));
-      this.classList.add('active');
-      const year = this.dataset.year;
-      document.querySelectorAll('.year-block').forEach(block => {
-        block.style.display = (year === 'all' || block.dataset.year === year) ? 'block' : 'none';
+  // Excel file reading and data management
+  let resultsData = {};
+  const colorMap = {
+    '1': { bg: 'linear-gradient(135deg,#FF6B2B,#ff8c5a)', text: '#FF6B2B' },
+    '2': { bg: 'linear-gradient(135deg,#4361ee,#7209b7)', text: '#4361ee' },
+    '3': { bg: 'linear-gradient(135deg,#00C9A7,#009e84)', text: '#00C9A7' },
+    '4': { bg: 'linear-gradient(135deg,#f72585,#b5179e)', text: '#f72585' },
+    '5': { bg: 'linear-gradient(135deg,#FFD700,#f0b800)', text: '#FFD700' }
+  };
+
+  const achievementColors = {
+    'District Topper': { bg: 'rgba(255,215,0,0.1)', text: '#B8860B' },
+    'State Merit': { bg: 'rgba(0,201,167,0.1)', text: '#00C9A7' },
+    'JEE Qualified': { bg: 'rgba(67,97,238,0.1)', text: '#4361ee' },
+    'NEET Qualified': { bg: 'rgba(0,201,167,0.1)', text: '#00C9A7' },
+    'NEET Aspirant': { bg: 'rgba(114,9,183,0.1)', text: '#7209b7' },
+    'School Topper': { bg: 'rgba(255,107,43,0.1)', text: '#FF6B2B' },
+    'Merit List': { bg: 'rgba(0,201,167,0.1)', text: '#00C9A7' },
+    'District Top 10': { bg: 'rgba(255,107,43,0.1)', text: '#FF6B2B' }
+  };
+
+  document.getElementById('excelFile').addEventListener('change', function(e) {
+    const file = e.target.files[0];
+    if (!file) return;
+
+    const reader = new FileReader();
+    reader.onload = function(event) {
+      try {
+        const data = event.target.result;
+        const workbook = XLSX.read(data, { type: 'binary' });
+        resultsData = parseExcelData(workbook);
+        
+        if (Object.keys(resultsData).length > 0) {
+          document.getElementById('fileStatus').textContent = '✓ File loaded successfully';
+          document.getElementById('fileStatus').style.color = '#00C9A7';
+          populateYearFilter();
+          renderResults('all');
+        } else {
+          document.getElementById('fileStatus').textContent = '✗ No valid data found in Excel file';
+          document.getElementById('fileStatus').style.color = '#FF6B2B';
+        }
+      } catch (error) {
+        console.error('Error reading Excel file:', error);
+        document.getElementById('fileStatus').textContent = '✗ Error reading file: ' + error.message;
+        document.getElementById('fileStatus').style.color = '#FF6B2B';
+      }
+    };
+    reader.readAsBinaryString(file);
+  });
+
+  function parseExcelData(workbook) {
+    const results = {};
+    
+    workbook.SheetNames.forEach(sheetName => {
+      const sheet = workbook.Sheets[sheetName];
+      const jsonData = XLSX.utils.sheet_to_json(sheet);
+      
+      if (jsonData.length > 0) {
+        // Assume first sheet or specific sheet name contains results
+        jsonData.forEach(row => {
+          const year = row.Year || row.year || '2024';
+          const studentClass = row.Class || row.class || 'Class 12';
+          
+          if (!results[year]) {
+            results[year] = {};
+          }
+          if (!results[year][studentClass]) {
+            results[year][studentClass] = [];
+          }
+          
+          results[year][studentClass].push({
+            rank: row.Rank || row.rank || results[year][studentClass].length + 1,
+            name: row['Student Name'] || row['Name'] || 'N/A',
+            stream: row.Stream || row.stream || row.Board || 'N/A',
+            score: parseFloat(row.Score || row.score || 0),
+            achievement: row.Achievement || row.achievement || '',
+            location: row.Location || row.location || ''
+          });
+        });
+        
+        // Sort each class by score descending
+        Object.keys(results[year]).forEach(cls => {
+          results[year][cls].sort((a, b) => b.score - a.score);
+          results[year][cls] = results[year][cls].map((student, index) => ({
+            ...student,
+            rank: index + 1
+          }));
+        });
+      }
+    });
+    
+    return results;
+  }
+
+  function populateYearFilter() {
+    const years = Object.keys(resultsData).sort((a, b) => b - a);
+    const filterContainer = document.getElementById('yearFilter');
+    
+    // Clear existing buttons except "All Years"
+    filterContainer.innerHTML = '<button class="year-btn active" data-year="all">All Years</button>';
+    
+    years.forEach(year => {
+      const btn = document.createElement('button');
+      btn.className = 'year-btn';
+      btn.dataset.year = year;
+      btn.textContent = year;
+      filterContainer.appendChild(btn);
+    });
+    
+    // Add click listeners
+    document.querySelectorAll('.year-btn').forEach(btn => {
+      btn.addEventListener('click', function() {
+        document.querySelectorAll('.year-btn').forEach(b => b.classList.remove('active'));
+        this.classList.add('active');
+        renderResults(this.dataset.year);
       });
     });
-  });
+  }
+
+  function renderResults(selectedYear) {
+    const container = document.getElementById('resultsContainer');
+    container.innerHTML = '';
+    
+    const yearsToShow = selectedYear === 'all' 
+      ? Object.keys(resultsData).sort((a, b) => b - a) 
+      : [selectedYear];
+    
+    yearsToShow.forEach(year => {
+      const yearData = resultsData[year];
+      const classes = Object.keys(yearData).sort();
+      
+      const yearBlock = document.createElement('div');
+      yearBlock.className = 'year-block mb-5';
+      yearBlock.dataset.year = year;
+      
+      // Calculate summary stats
+      let totalStudents = 0;
+      let passCount = 0;
+      let toppers90 = 0;
+      
+      classes.forEach(cls => {
+        totalStudents += yearData[cls].length;
+        passCount += yearData[cls].filter(s => s.score >= 35).length;
+        toppers90 += yearData[cls].filter(s => s.score >= 90).length;
+      });
+      
+      const passRate = totalStudents > 0 ? Math.round((passCount / totalStudents) * 100) : 0;
+      const districtToppers = Object.values(yearData).flat()
+        .filter(s => s.achievement && s.achievement.toLowerCase().includes('district topper')).length;
+      
+      let html = `
+        <div class="result-year-header">
+          <span class="result-year-badge">${year}</span>
+          <h4 style="margin:0;font-size:1.1rem;">Board Results ${year}–${parseInt(year)+1}</h4>
+          <span style="margin-left:auto;font-size:0.82rem;color:var(--gray);">CBSE & PSEB Board Examinations</span>
+        </div>
+        
+        <div class="summary-cards">
+          <div class="summary-card" style="background:linear-gradient(135deg,#FF6B2B,#ff8c5a);">
+            <div class="value">${passRate}%</div>
+            <div class="label">Overall Pass Rate</div>
+          </div>
+          <div class="summary-card" style="background:linear-gradient(135deg,#1A1A2E,#16213E);">
+            <div class="value">${districtToppers}</div>
+            <div class="label">District Toppers</div>
+          </div>
+          <div class="summary-card" style="background:linear-gradient(135deg,#00C9A7,#009e84);">
+            <div class="value">${toppers90}</div>
+            <div class="label">90%+ Students</div>
+          </div>
+          <div class="summary-card" style="background:linear-gradient(135deg,#4361ee,#3a0ca3);">
+            <div class="value">${totalStudents}</div>
+            <div class="label">Total Appeared</div>
+          </div>
+        </div>
+      `;
+      
+      classes.forEach(cls => {
+        const classStudents = yearData[cls];
+        html += `
+          <div class="class-header">
+            <h6>${cls} Toppers – ${year}</h6>
+          </div>
+          <div class="table-responsive mb-4">
+            <table class="toppers-table table">
+              <thead>
+                <tr>
+                  <th>Rank</th>
+                  <th>Student Name</th>
+                  <th>${cls.includes('10') ? 'Board' : 'Stream'}</th>
+                  <th>Score</th>
+                  <th>Performance</th>
+                  <th>Achievement</th>
+                </tr>
+              </thead>
+              <tbody>
+        `;
+        
+        classStudents.slice(0, 10).forEach((student, index) => {
+          const colors = colorMap[student.rank] || colorMap['5'];
+          const achievementColor = achievementColors[student.achievement] || { bg: 'rgba(200,200,200,0.1)', text: '#999' };
+          
+          html += `
+            <tr>
+              <td><div class="rank-badge rank-${student.rank > 3 ? 'other' : student.rank}">#${student.rank}</div></td>
+              <td>
+                <div class="d-flex align-items-center gap-2">
+                  <div class="student-avatar" style="background:${colors.bg};width:36px;height:36px;font-size:0.95rem;margin:0;">
+                    ${student.name.charAt(0).toUpperCase()}
+                  </div>
+                  <div>
+                    <div style="font-weight:500;font-size:0.9rem;">${student.name}</div>
+                    ${student.location ? `<small style="color:var(--gray);">${student.location}</small>` : ''}
+                  </div>
+                </div>
+              </td>
+              <td>${student.stream}</td>
+              <td><strong style="color:var(--primary);">${student.score.toFixed(1)}%</strong></td>
+              <td>
+                <div class="percentage-bar">
+                  <div class="percentage-fill" style="width:${student.score}%;"></div>
+                </div>
+              </td>
+              <td>
+                ${student.achievement ? `
+                  <span style="background:${achievementColor.bg};color:${achievementColor.text};padding:2px 8px;border-radius:4px;font-size:0.75rem;">
+                    ${student.achievement}
+                  </span>
+                ` : '-'}
+              </td>
+            </tr>
+          `;
+        });
+        
+        html += `
+              </tbody>
+            </table>
+          </div>
+        `;
+      });
+      
+      yearBlock.innerHTML = html;
+      container.appendChild(yearBlock);
+    });
+  }
+
+  // Render testimonials (static for now, can also be pulled from Excel)
+  const testimonials = [
+    {
+      name: 'Arjun Sharma',
+      class: 'Class 12, 2024',
+      avatar: 'A',
+      avatarGradient: 'linear-gradient(135deg,#FF6B2B,#ff8c5a)',
+      text: '"The faculty at Spark are truly exceptional. Their dedication and clarity in teaching complex Physics concepts helped me secure 97.4%. Highly recommended!"'
+    },
+    {
+      name: 'Simran Kaur',
+      class: 'Class 12, 2024',
+      avatar: 'S',
+      avatarGradient: 'linear-gradient(135deg,#4361ee,#7209b7)',
+      text: '"From struggling in Chemistry to getting 97 marks — Spark\'s small batches and personal attention made all the difference. Thank you!"'
+    },
+    {
+      name: 'Ravi Kumar',
+      class: 'Class 12, 2024',
+      avatar: 'R',
+      avatarGradient: 'linear-gradient(135deg,#00C9A7,#009e84)',
+      text: '"The weekly tests and detailed feedback kept me on track throughout the year. Spark\'s systematic approach to Biology is unmatched."'
+    }
+  ];
+
+  function renderTestimonials() {
+    const container = document.getElementById('testimonialsContainer');
+    container.innerHTML = '';
+    
+    testimonials.forEach(testimonial => {
+      const col = document.createElement('div');
+      col.className = 'col-lg-4';
+      col.innerHTML = `
+        <div class="result-card">
+          <div class="d-flex align-items-center gap-2 mb-3">
+            <div class="student-avatar" style="background:${testimonial.avatarGradient};width:44px;height:44px;font-size:1rem;margin:0;">
+              ${testimonial.avatar}
+            </div>
+            <div>
+              <div style="font-weight:600;font-size:0.92rem;">${testimonial.name}</div>
+              <small style="color:var(--gray);">${testimonial.class}</small>
+            </div>
+            <div class="ms-auto stars">★★★★★</div>
+          </div>
+          <p style="font-size:0.85rem;color:var(--text-light);line-height:1.7;">${testimonial.text}</p>
+        </div>
+      `;
+      container.appendChild(col);
+    });
+  }
+
+  // Initialize testimonials
+  renderTestimonials();
 </script>
 </body>
 </html>
